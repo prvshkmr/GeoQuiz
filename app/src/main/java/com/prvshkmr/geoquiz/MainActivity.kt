@@ -94,6 +94,7 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
         }
     }
+    //checker
 
     private fun updateQuestion() {
         val questionTextResId = questionBank[currentIndex].textResId
