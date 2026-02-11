@@ -109,5 +109,7 @@ class MainActivity : AppCompatActivity() {
             R.string.incorrect_toast
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
+        currentIndex = (currentIndex + 1) % questionBank.size
+        updateQuestion()
     }
 }
