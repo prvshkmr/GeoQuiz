@@ -10,6 +10,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 import com.prvshkmr.geoquiz.databinding.ActivityMainBinding
+import android.util.Log
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate(Bundle?) called")
 
         // Initialize the binding object
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -93,6 +97,31 @@ class MainActivity : AppCompatActivity() {
             currentIndex = (currentIndex - 1 + questionBank.size) % questionBank.size
             updateQuestion()
         }
+    }
+
+    override fun onStart(){
+        super.onStart()
+        Log.d(TAG, "onStart() called")
+    }
+
+    override fun onResume(){
+        super.onResume()
+        Log.d(TAG, "onResume() called")
+    }
+
+    override fun onPause(){
+        super.onPause()
+        Log.d(TAG, "onPause() called")
+    }
+
+    override fun onStop(){
+        super.onStop()
+        Log.d(TAG, "onStop() called")
+    }
+
+    override fun onDestroy(){
+        super.onDestroy()
+        Log.d(TAG, "onDestroy() called")
     }
     //checker
 
