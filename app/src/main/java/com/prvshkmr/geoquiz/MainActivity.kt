@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 import com.prvshkmr.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
+import androidx.activity.viewModels
 
 private const val TAG = "MainActivity"
 
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var currentIndex = 0
+
+    private val quizViewModel: QuizViewModel by viewModels()
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate(Bundle?) called")
+        Log.d(TAG, "Got a QuizViewModel: $quizViewModel")
 
         // Initialize the binding object
         binding = ActivityMainBinding.inflate(layoutInflater)
