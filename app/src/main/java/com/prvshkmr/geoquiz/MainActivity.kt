@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             quizViewModel.moveToPrevious()
             updateQuestion()
         }
+        updateQuestion()
     }
 
     override fun onStart(){
