@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "Got a QuizViewModel: $quizViewModel      99")
+        Log.d(TAG, "Got a QuizViewModel: $quizViewModel")
 
         // Initialize the binding object
         binding = ActivityMainBinding.inflate(layoutInflater)
