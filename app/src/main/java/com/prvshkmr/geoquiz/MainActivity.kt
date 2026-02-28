@@ -1,5 +1,6 @@
 package com.prvshkmr.geoquiz
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -12,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.prvshkmr.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
 import androidx.activity.viewModels
+import kotlin.jvm.java
 
 private const val TAG = "MainActivity"
 
@@ -45,6 +47,12 @@ class MainActivity : AppCompatActivity() {
         binding.previousButton.setOnClickListener {
             quizViewModel.moveToPrevious()
             updateQuestion()
+        }
+
+        binding.cheatButton.setOnClickListener {
+            //Start Cheat Activity
+            val intent = Intent(this, CheatActivity::class.java)
+            startActivity(intent)
         }
         updateQuestion()
     }
