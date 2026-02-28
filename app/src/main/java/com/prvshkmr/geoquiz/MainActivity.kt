@@ -1,23 +1,14 @@
 package com.prvshkmr.geoquiz
 
-import android.app.Activity
-import android.content.Intent
 import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.snackbar.Snackbar
 import com.prvshkmr.geoquiz.databinding.ActivityMainBinding
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import kotlin.jvm.java
 import android.os.Build
 import androidx.annotation.RequiresApi
 
@@ -32,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ){ result ->
         //Handle the result
-        if(result.resultCode == Activity.RESULT_OK){
+        if(result.resultCode == RESULT_OK){
             quizViewModel.isCheater = result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
         }
     }
@@ -46,11 +37,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Now you can use binding.trueButton, etc.
-        binding.trueButton.setOnClickListener { view: View ->
+        binding.trueButton.setOnClickListener {
             checkAnswer(true)
         }
 
-        binding.falseButton.setOnClickListener { view: View ->
+        binding.falseButton.setOnClickListener {
             checkAnswer(false)
         }
 
@@ -122,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun blurCheatButton(){
-        var effect = RenderEffect.createBlurEffect(
+        val effect = RenderEffect.createBlurEffect(
             10.0f,
             10.0f,
             Shader.TileMode.CLAMP
