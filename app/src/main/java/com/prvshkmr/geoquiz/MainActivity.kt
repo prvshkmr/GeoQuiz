@@ -2,6 +2,8 @@ package com.prvshkmr.geoquiz
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -16,6 +18,8 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import kotlin.jvm.java
+import android.os.Build
+import androidx.annotation.RequiresApi
 
 private const val TAG = "MainActivity"
 
@@ -67,6 +71,9 @@ class MainActivity : AppCompatActivity() {
             cheatLauncher.launch(intent)
         }
         updateQuestion()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            blurCheatButton()
+        }
     }
 
 
@@ -112,4 +119,15 @@ class MainActivity : AppCompatActivity() {
         quizViewModel.moveToNext()
         updateQuestion()
     }
+
+    @RequiresApi(Build.VERSION_CODES.S)
+    private fun blurCheatButton(){
+        var effect = RenderEffect.createBlurEffect(
+            10.0f,
+            10.0f,
+            Shader.TileMode.CLAMP
+        )
+        binding.cheatButton.setRenderEffect(effect)
+    }
+
 }
