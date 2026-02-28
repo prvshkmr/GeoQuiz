@@ -7,6 +7,7 @@ import org.junit.runner.RunWith
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -32,5 +33,20 @@ class MainActivityTest {
     fun showFirstQuestionOnLaunch(){
         onView(withId(R.id.questionTextView))
             .check(matches(withText(R.string.question_australia)))
+    }
+
+    @Test
+    fun showsSecondQuestionAfterNextPress(){
+        onView(withId(R.id.nextButton)).perform(click())
+        onView(withId(R.id.questionTextView))
+            .check(matches(withText(R.string.question_amazon)))
+    }
+
+    @Test
+    fun handlesActivityRecreation(){
+        onView(withId(R.id.nextButton)).perform(click())
+        scenario.recreate()
+        onView(withId(R.id.questionTextView))
+            .check(matches(withText(R.string.question_amazon)))
     }
 }
